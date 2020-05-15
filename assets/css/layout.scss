@@ -1,0 +1,18 @@
+@charset "UTF-8";
+@import "padroes/predefinicoes";
+
+
+/////// LAYOUT
+body, html {overflow-x: hidden;}
+body {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.7;
+	color: $preto;
+	min-height: 100vh;
+	font-family: $fonte-padrao;
+	letter-spacing: 0.04em;
+	position: relative;
+	background-color: $cinza;
+}
