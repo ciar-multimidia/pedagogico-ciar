@@ -37,3 +37,6 @@
     &:before, &:after { content: ""; display: table; }
     &:after { clear: both; }
 }
+
+
+%invisivel { width: 1px; height: 1px; overflow: hidden; line-height: 9999px; text-indent: 9999px; }

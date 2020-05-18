@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import "padroes/predefinicoes";
 
-
 /////// LAYOUT
 body, html {overflow-x: hidden;}
 body {
@@ -15,4 +14,89 @@ body {
 	letter-spacing: 0.04em;
 	position: relative;
 	background-color: $cinza;
+}
+
+@import "layout/componentes";
+
+#portal {
+	@include flex(flex-start);
+
+	header {
+		padding-top: 3em;
+		width: 100%;
+	    @include display(flex);
+	    @include flex-wrap(nowrap);
+	    @include flex-direction(row);
+	    @include justify-content(flex-start);
+
+		h1 {
+			@include flex-grow(1);
+			background: $amarelo;
+			padding: 0 1rem 1rem;
+
+			span {display: inline-block; @include transform(translateY(-30px));}
+		}
+
+		.ufg {
+			@include align-self(flex-end);
+			border-bottom: 20px solid $preto;
+			@include flex-shrink(0);
+
+			img { width: 80px; display: block; margin-bottom: 1em; margin-left: 8em;}
+		}
+	}
+
+
+
+	ul {
+		width: 100%; 
+		padding: 1em 0;
+	    @include display(flex);
+	    @include flex-direction(row);
+	    @include justify-content(flex-start);
+
+	    li {
+	    	background: $amarelo; height: 100%; position: relative;
+	    	@include flex-grow(1); margin-left: 20px;
+	    	@include display(flex);
+		    @include flex-direction(column);
+		    @include justify-content(flex-end);
+		    padding: 1rem;
+
+
+	    	&:first-of-type { margin-left: 0 }
+
+	    	a.ancora-modulo {  @include blocoabsoluto; }
+
+	    	h2 {
+	    		font-size: 5em; display: block; text-align: center;
+	    		padding-bottom: 0; width: 100%; @include transition(padding 0.3s ease-in-out);
+	    		position: relative; overflow: hidden; text-shadow: 2px 2px 0 darken($amarelo,10%);
+
+	    		&:after { 
+	    			content: ""; width: 100%; height: 40px; display: block; position: absolute;
+	    			background: url('../img/grafismo-portal-1.svg') no-repeat center bottom / contain;
+	    			bottom: 0; left: 0; @include transform(translateY(100%)); @include transition(transform 0.3s ease-in-out);
+	    		}
+
+	    		span { display: inline-block; @extend %invisivel; }
+	    	}
+
+	    	&:not(.desabilitado):hover {
+
+	    		h2 {
+	    			padding-bottom: 40px;
+	    			&:after { @include transform(translateY(0)); }
+	    		}
+	    	}
+
+	    	&.desabilitado {
+	    		cursor: not-allowed;
+
+	    		a.ancora-modulo {pointer-events: none;}
+
+	    		h2 { color: $cinza;}
+	    	}
+	    }
+	}
 }
