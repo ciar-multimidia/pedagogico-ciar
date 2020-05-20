@@ -118,6 +118,11 @@ blockquote {
 	p:last-of-type {margin-bottom: 0;}
 }
 
+// listas
+dl {
+	dt { font-weight: bold; }
+}
+
 // divisoria
 hr {
 	display: block;

@@ -9,7 +9,7 @@ body {
 	font-size: 18px;
 	line-height: 1.55;
 	color: $preto;
-	min-height: 100vh;
+	min-height: 200vh;
 	font-family: $fonte-padrao;
 	letter-spacing: 0.04em;
 	position: relative;
@@ -17,234 +17,27 @@ body {
 }
 
 @import "layout/componentes";
+@import "layout/portal";
 
-#portal {
-	@include flex(flex-start);
-
-	header {
-		padding-top: 3em;
-		width: 100%;
-	    @include display(flex);
-	    @include flex-wrap(nowrap);
-	    @include flex-direction(row);
-	    @include justify-content(flex-start);
-
-		h1 {
-			@include flex-grow(1);
-			background: $amarelo;
-			padding: 0 1rem 1rem;
-
-			span {display: inline-block; @include transform(translateY(-30px));}
-		}
-
-		.ufg {
-			@include align-self(flex-end);
-			border-bottom: 20px solid $preto;
-			@include flex-shrink(0); 
-
-			img { width: 80px; display: block; margin-bottom: 1em; margin-left: 8em;}
-		}
-
-		@media (max-width: $smart-maior) {
-			.ufg {
-				height: 29px; overflow: hidden;
-				img { margin-left: 1em; }
-			}
-		}
-
-		@media (max-width: $smart-menor) {
-			@include flex-wrap(wrap);
-
-			.ufg {
-				border: 0; @include transform(translateY(-50%));
-				position: relative; text-align: right;
-				@include display(flex); width: 100%;
-			    @include flex-wrap(nowrap);
-
-				img { margin: 0 20px; }
-
-				&:before {
-					content: ""; width: calc(100% - 120px);
-					background: $preto;
+body {
+	/****************************************
+	 **** / INICIO DE ADICAO DE CORES / *****
+	 ****************************************/
+	@each $livros in $cores-livros{
+		$i: index($cores-livros, $livros);
+		&.volume#{$i}{
+			#header-volume {
+				.titulo:before {background: $livros}
+				nav ul li {
+					&.colecao a { color: $livros; }
 				}
 			}
+
+			a.btn { background: $livros; }
 		}
 	}
-
-
-
-	ul {
-		width: 100%; 
-		padding: 1em 0;
-	    @include display(flex);
-	    @include flex-direction(row);
-	    @include justify-content(flex-start);
-
-	    li {
-	    	background: $amarelo; height: 100%; position: relative;
-	    	@include flex-grow(1); margin-left: 20px;
-	    	@include display(flex);
-		    @include flex-direction(column);
-		    @include justify-content(flex-end);
-		    padding: 1rem;
-			@include transition(width 0.2s ease-in-out, background 0.2s ease-in-out, padding 0.2s ease-in-out);
-
-			@media (max-width: $smart-menor) { padding-right: 0; }
-
-			&:before { 
-				width: 0; height: 100%; position: absolute; content: "";
-				top: 0; left: 0; background: $amarelo; 
-				@include transition(width 0.2s ease-in-out, background 0.2s ease-in-out);
-			}
-
-	    	&:first-of-type { margin-left: 0 }
-
-			a.ancora-volume {  @include blocoabsoluto; z-index: 2; }
-
-			// entrad do volume, inicio de navegacao
-	    	.entrada {
-		    	h2 {
-		    		font-size: 5em; display: block; text-align: center;
-		    		padding-bottom: 0; width: 100%; @include transition(padding 0.2s ease-in-out);
-		    		position: relative; overflow: hidden; text-shadow: 2px 2px 0 darken($amarelo,10%);
-
-		    		&:after { 
-		    			content: ""; width: 100%; height: 40px; display: block; position: absolute;
-		    			background: url('../img/grafismo-portal-1.svg') no-repeat center bottom / contain;
-		    			bottom: 0; left: 0; @include transform(translateY(100%)); @include transition(transform 0.2s ease-in-out);
-		    		}
-
-		    		span { display: inline-block; @include invisivel; }
-		    	}
-	    	}
-
-			// apresentacao de volume - aparece no modo :target
-	    	.apresenta {
-	    		display: none; max-width: $smart-maior;
-	    		height: 100%; padding-bottom: 130px; // espaco para bola
-	    		@include animation(tornarVisivel 0.2s linear 0s 1 normal both);
-
-	    		h3 { font-size: .8em; font-weight: normal; text-transform: uppercase; }
-	    		h4 { font-size: 2em; 
-	    			@media (max-width: $smart-menor) { font-size: 1.4em }
-	    		}
-
-	    		dl {
-	    			font-size: .85em;
-	    			dt {font-weight: bold; text-transform: uppercase}
-	    			dd {}
-	    		}
-
-	    		p:last-of-type {margin-bottom: 0}
-	    	}
-
-			// voltar a lista dos volumes
-	    	.voltar { 
-	    		width: 130px; height: 130px; position: absolute; bottom: 0; left: 20px;
-	    		background: $preto; border-radius: 50%; text-align: center;
-	    		color: $amarelo; font-weight: bold;
-	    		@include transform(scale(0)); @include transition(transform 0.3s ease-in-out);
-
-	    		a {
-	    			@include blocoabsoluto; line-height: 130px;
-	    		}
-
-	    		&:before { 
-	    			content: ""; display: block; position: absolute;
-	    			width: 80px; height: 40px; background: $preto;
-	    			bottom: 0; right: -40px; @include transform(rotate(0));
-				    transform-origin: right bottom; @include transition(transform 0.8s ease-in-out);
-	    		}
-	    	}
-
-			// volume qdo passa mouse
-	    	&:not(.desabilitado):hover, &:not(.desabilitado):focus {
-	    		.entrada h2 {
-	    			padding-bottom: 40px;
-	    			&:after { @include transform(translateY(0)); }
-	    		}
-	    	}
-
-			// qdo o volume eh clicado e aparece conteudo
-	    	&:not(.desabilitado):target {
-	    		width: 100%;
-	    		background: transparent;
-	    		padding-left: 60px;
-	    		@include justify-content(flex-start);
-
-	    		&:before { width: 40px; }
-
-	    		a.ancora-volume, .entrada { display: none; }
-	    		.apresenta { display: block; }
-
-	    		.voltar {
-	    			@include transform(scale(1));
-	    			&:before { @include transform(rotate(60deg)); }
-	    		}
-
-				// os outros volumes somem
-	    		& ~ .volume .entrada { display: none; }
-	    	}
-
-
-			// qdo volume nao estava habilitado
-	    	&.desabilitado {
-	    		cursor: not-allowed;
-				
-				a.ancora-volume {pointer-events: none;}
-	    		.entrada h2 { color: $cinza;}
-	    	}
-
-
-	    	// define cores de cada volume
-	    	&#volume1 {
-	    		a.btn:link, a.btn:visited { border-color: nth($cores-livros,1); }
-	    		a.btn, .voltar:before { background: nth($cores-livros,1) }
-	    	}
-	    	&#volume2 {
-	    		a.btn:link, a.btn:visited { border-color: nth($cores-livros,2); }
-	    		a.btn, .voltar:before { background: nth($cores-livros,2) }
-	    	}
-	    }
-
-
-
-    	//////////// 
-    	@media (max-width: $smart-maior) {
-    		@include flex-wrap(wrap);
-
-    		li {
-    			width: 100%; height: auto;
-    			margin: 10px 0 0 0;
-
-    			.entrada {
-					h2 {
-						font-size: 2em; text-align: left; 
-						&:after { display: none;}
-
-						span { display: unset; @include visivel }
-
-					}
-    			}
-		    	&:not(.desabilitado):hover, &:not(.desabilitado):focus {
-		    		.entrada h2 { padding-bottom: 0; }
-		    	}
-
-    			&:not(.desabilitado):target {
-    				padding-left: 40px;
-
-					&:before { width: 20px; }
-
-					.apresenta { padding-bottom: inherit; }
-
-    				.voltar { display: none; }
-    				& ~ .volume .entrada { display: unset; }
-
-    				// barrinhas
-					&#volume1:before { background: nth($cores-livros,1); }
-					&#volume2:before { background: nth($cores-livros,2); }
-    			}
-			}
-    	}
-	}
+	/****************************************
+	 ***** / FIM DE ADICAO DE CORES / *******
+	 ****************************************/	
 }
+

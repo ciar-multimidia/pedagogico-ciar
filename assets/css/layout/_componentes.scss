@@ -7,6 +7,7 @@
 	max-width: 1180px;
 	margin-left: auto;
 	margin-right: auto;
+	@include flex(space-between);
 }
 
 
@@ -16,12 +17,95 @@
 a.btn {
 	display: inline-block;
 	padding: .8em 1.3em;
-	background: $preto; line-height: 1;
+	line-height: 1;
 	font-weight: bold; font-size: .8em;	
 	text-decoration: none; text-transform: uppercase;
-	border: 2px solid;
+	font-family: $fonte-titulos;
 
 	&:focus, &:hover {
-		border-color: $preto !important;
+		background: $amarelo !important;
 	}
+}
+
+
+
+
+/****************************************
+ * CABECALHO BOOK *
+ ****************************************/
+ #header-volume {
+	@include flex(space-between);
+	@include fundocompleto(darken($cinza,5%));
+	margin-bottom: 3em;
+	@include order(1);
+
+	.titulo {
+		width: 65%;
+		padding-top: 200px;
+		position: relative;
+		margin-bottom: -10px;
+
+		&:before {
+			width: 100%; height: 110px;
+			content: ""; display: block; position: absolute; top: 0;
+		}
+		&:after {
+			width: 190px; height: 14px; background: url('../img/grafismo-1.svg') no-repeat left center / contain;
+			content: ""; display: block; position: absolute; top: 75px; left: 20px;
+		}
+
+		h1 { 
+			display: inline-block; padding-bottom: .5em;
+			border-bottom: 20px solid $amarelo;
+
+			span {position: relative;}
+		}
+	}
+
+	nav {
+		width: calc(35% - 20px);
+		ul {
+			width: 100%;
+			li {
+				display: block; margin-bottom: 20px; text-align: right;
+				&.colecao a {
+					display: block; background: $preto; font-family: $fonte-titulos;
+					width: 100%; height: 160px; position: relative; font-weight: bold;
+					text-transform: uppercase; font-size: 1.3em; 
+					span { position: absolute; bottom: 20px; right: 20px;}
+
+					&:hover, &:focus { color: $amarelo !important; }
+				}
+				&.sumario a {
+					background: url(../img/icone-menu.svg) no-repeat center center / 30px;
+					display: inline-block; width: 41px; height: 37px; line-height: 37px;
+					padding: 2px; cursor: pointer; overflow: hidden; margin-left: 1em;
+					
+					&:hover, &:focus { background-color: $amarelo }
+					span { @include invisivel; }
+				}
+			}
+		}
+	}
+}
+
+
+
+
+/****************************************
+ * ARTIGO E LATERAL *
+ ****************************************/
+article {
+	width: 65%;
+	@include order(2);
+}
+
+aside {
+	width: 240px; font-size: .9em;
+	@include flex-shrink(0);
+	@include order(3);
+	@include align-self(flex-start);
+	padding: 1em 0 .5em; text-align: right;
+	border-top: 8px solid $amarelo;
+	border-bottom: 16px solid $amarelo;
 }

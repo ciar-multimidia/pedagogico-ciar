@@ -43,7 +43,7 @@
 					<dd>Felipe C. Londoño</dd>
 				</dl>
 
-				<p><a href="#" class="btn">Acessar volume</a></p>
+				<p><a href="volume1/index.html" class="btn">Acessar volume</a></p>
 			</div>
 
 			<div class="voltar"><a href="index.html">voltar</a></div>
@@ -119,6 +119,19 @@
 
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script>
+jQuery(document).ready(function($) {
+
+	var headerPortal = $('#header-portal'),
+		altura_headerPortal = headerPortal.outerHeight(),
+		listaVolumes = $('#lista-volumes'),
+		viewport = jQuery(window).width();
+
+	if (viewport > 680) {
+		listaVolumes.css('min-height', 'calc(100vh - ' + altura_headerPortal + 'px )');
+	}
+
+});	
+</script>
 </body>
 </html>
