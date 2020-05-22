@@ -1,5 +1,22 @@
+body.portal {
+	@include imagemfull(cover,center,center);
+	background-image: url('../img/textura.jpg');
+
+	// fundo
+	&:before, &:after {
+		content: ""; position: fixed; display: block;
+		width: 8%; height: 100vh; top: 0;
+		background-image: url('../img/bg.svg');
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	&:before { left: 0; background-position: right top;}
+	&:after { right: 0; background-position: left top;}
+}
 
 #portal {
+	position: relative; z-index: 1;
 	@include justify-content(flex-start);
 
 	header {

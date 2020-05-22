@@ -4,7 +4,7 @@
 .container {
 	width: 100%;
 	padding: 0 10px;
-	max-width: 1180px;
+	max-width: $container;
 	margin-left: auto;
 	margin-right: auto;
 	@include flex(space-between);
@@ -35,9 +35,10 @@ a.btn {
  ****************************************/
  #header-volume {
 	@include flex(space-between);
-	@include fundocompleto(darken($cinza,5%));
+	@include fundocompleto(url('../img/textura.jpg') no-repeat center center / cover);
 	margin-bottom: 3em;
 	@include order(1);
+
 
 	.titulo {
 		width: 65%;
@@ -63,7 +64,7 @@ a.btn {
 	}
 
 	nav {
-		width: calc(35% - 20px);
+		width: calc(35% - 20px);		
 		ul {
 			width: 100%;
 			li {
@@ -76,14 +77,37 @@ a.btn {
 
 					&:hover, &:focus { color: $amarelo !important; }
 				}
-				&.sumario a {
-					background: url(../img/icone-menu.svg) no-repeat center center / 30px;
-					display: inline-block; width: 41px; height: 37px; line-height: 37px;
-					padding: 2px; cursor: pointer; overflow: hidden; margin-left: 1em;
-					
-					&:hover, &:focus { background-color: $amarelo }
-					span { @include invisivel; }
+				&.nav {	
+					a {
+						background: url(../img/icone-menu.svg) no-repeat center center / 30px;
+						display: inline-block; width: 41px; height: 37px; line-height: 37px;
+						padding: 2px; cursor: pointer; overflow: hidden; margin-bottom: 2px;
+						
+						&:hover, &:focus { background-color: $amarelo !important}
+						span { @include invisivel; }
+
+						&:nth-of-type(2) { background-image: url(../img/icone-imprimir.svg); display: none; }
+					}
 				}
+			}
+		}
+	}
+
+	&.ao-rolar {
+		z-index: 11;
+		nav ul li.nav {
+			position: fixed; top: 0;
+
+			a { 
+				background-color: $amarelo;
+				&:nth-of-type(2) { display: inline-block; }
+			}
+
+			@media (min-width: $container + 1px) {
+				right: calc(50% - #{$container / 2} + 10px);
+			}
+			@media (max-width: $container) {
+				right: 10px;
 			}
 		}
 	}
