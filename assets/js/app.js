@@ -15,7 +15,17 @@ jQuery(document).ready(function($) {
       }
 
       scrollAtual = thisScroll;
-    });     
+    }); 
+
+
+
+    ///////////////////////////////// APLICACAO DE GRAFISMOS
+    var h2 = $('article').find('h2'),
+        h4 = $('article').find('h4');
+
+    h2.append('<svg xmlns="http://www.w3.org/2000/svg" role="img" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 1451 151"><path fill-rule="nonzero" d="M150.17 75.66a75 75 0 01-75 75 75 75 0 01-75-75 75 75 0 0175-75 75 75 0 0175 75M475.17 75.66a75 75 0 01-75 75 75 75 0 01-75-75 75 75 0 0175-75 75 75 0 0175 75M800.17 75.66a75 75 0 01-75 75 75 75 0 01-75-75 75 75 0 0175-75 75 75 0 0175 75M1125.17 75.66a75 75 0 01-75 75 75 75 0 01-75-75 75 75 0 0175-75 75 75 0 0175 75M1450.17 75.66a75 75 0 01-75 75 75 75 0 01-75-75 75 75 0 0175-75 75 75 0 0175 75"/></svg>');
+    h4.prepend('<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 854 201"><path fill-rule="nonzero" d="M120.17 200.73H.17L133.5.73h120l-133.33 200zM320.17 200.73h-120L333.5.73h120l-133.33 200zM520.17 200.73h-120L533.5.73h120l-133.33 200zM720.17 200.73h-120L733.5.73h120l-133.33 200z"/></svg>');
+
     
     ///////////////////////////////// BARRA DE NAVEGACAO ORIENTADORA
     var getMax = function(){
@@ -68,11 +78,11 @@ jQuery(document).ready(function($) {
         });
     }
 
-  $(document).on('scroll', function(){
+    $(document).on('scroll', function(){
       maxAttr = $('#progressBar').attr('max');
       valueAttr = $('#progressBar').attr('value');
       percentage = (valueAttr/maxAttr) * 100;
-  });
+    });
 
 
 });

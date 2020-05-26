@@ -28,8 +28,6 @@ a.btn {
 }
 
 
-
-
 /****************************************
  * CABECALHO BOOK *
  ****************************************/
@@ -37,7 +35,8 @@ a.btn {
 	@include flex(space-between);
 	@include fundocompleto(url('../img/textura.jpg') no-repeat center center / cover);
 	margin-bottom: 3em; margin-right: -10px;
-	@include order(1); margin-left: -10px;
+	// @include order(1); 
+	margin-left: -10px;
 	width: calc(100% + 20px);
 
 
@@ -82,16 +81,19 @@ a.btn {
 					&:hover, &:focus { color: $amarelo !important; }
 				}
 				&.nav {	
-					a {
+					@include flex(flex-end);
+					a, button {
 						background: url(../img/icone-menu.svg) no-repeat center center / 30px;
-						display: inline-block; width: 41px; height: 37px; line-height: 37px;
-						padding: 2px; cursor: pointer; overflow: hidden; margin-bottom: 2px;
+						display: block; width: 41px; height: 37px; line-height: 37px;
+						padding: 2px; cursor: pointer; overflow: hidden; margin: 0 0 2px 10px;
 						
 						&:hover, &:focus { background-color: $amarelo !important}
 						span { @include invisivel; }
+					}
 
-						&:nth-of-type(2) { background-image: url(../img/icone-imprimir.svg);}
-						@media (max-width: $smart-maior) { &:nth-of-type(2) { display: none; } }
+					button { 
+						background-image: url(../img/icone-imprimir.svg);
+						@media (max-width: $smart-maior) { display: none; }
 					}
 				}
 			}
@@ -130,7 +132,7 @@ a.btn {
 					}
 
 					&.nav { 
-						a:nth-of-type(1) {
+						a {
 							width: auto; line-height: inherit; margin: 0; padding: 0;
 							background-image: none; display: inline-block;
 							padding: .8em 1.3em;
@@ -153,10 +155,8 @@ a.btn {
 		nav ul li.nav {
 			position: fixed; top: 0;
 
-			a { 
-				background-color: $amarelo;
-				&:nth-of-type(2) { display: inline-block; }
-			}
+			a, button { background-color: $amarelo; }
+			button { display: inline-block; }
 
 			@media (min-width: $container + 1px) {
 				right: calc(50% - #{$container / 2} + 10px);
@@ -165,7 +165,7 @@ a.btn {
 				right: 10px;
 			}
 
-			@media (max-width: $smart-maior) { a:nth-of-type(2) { display: none; } }
+			@media (max-width: $smart-maior) { button { display: none; } }
 		}
 	}
 }
@@ -177,34 +177,133 @@ a.btn {
  * ARTIGO E LATERAL *
  ****************************************/
 article {
-	width: 65%;
-	@include order(2);
+	width: 100%;
+	// @include order(2);
+	@import "artigo";
 
-	@media (max-width: $smart-maior) {
-		width: 100%;
-		@include order(3);
+	& > * { margin-bottom: 1.8em }
+
+	// autores
+	aside {
+		width: 240px; font-size: .9em;
+		padding: 1em 0 .5em; text-align: right;
+		border-top: 8px solid $amarelo;
+		border-bottom: 16px solid $amarelo;
+		float: right; margin-left: 1em;
+
+		@media (max-width: $smart-maior) {
+			width: 100%;
+			margin-bottom: 2em;
+			border-top: 0;
+			text-align: left;
+		}
+
+		@media (max-width: $smart-maior) and (min-width: $celular) {
+			columns: 2; column-gap: 20px;
+
+			dl { break-inside: avoid; }
+		}
 	}
 }
 
-aside {
-	width: 240px; font-size: .9em;
-	@include flex-shrink(0);
-	@include order(3);
-	@include align-self(flex-start);
-	padding: 1em 0 .5em; text-align: right;
-	border-top: 8px solid $amarelo;
-	border-bottom: 16px solid $amarelo;
 
-	@media (max-width: $smart-maior) {
-		width: 100%;
-		@include order(2); margin-bottom: 2em;
-		border-top: 0;
-		text-align: left;
+
+/****************************************
+ * RODAPE *
+ ****************************************/
+footer {
+	width: 100%;
+	color: white;
+	padding: 2em 0;
+	font-weight: bold;
+	font-family: $fonte-titulos;
+	@include flex(space-between);
+	@include flex-wrap(nowrap);
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+	@include fundocompleto($preto);
+	margin-bottom: 4px;
+
+	&:before { border-top: 4px solid $preto; }
+
+	a:nth-of-type(1) {@include order(1)}
+	a:nth-of-type(2) {@include order(3)}
+	a:nth-of-type(3) {@include order(2)}
+
+	a:hover {
+		text-decoration: none;
+		color: $amarelo;
 	}
 
-	@media (max-width: $smart-maior) and (min-width: $celular) {
-		columns: 2; column-gap: 20px;
-
-		dl { break-inside: avoid; }
+	@media (max-width: $smart-menor) {
+		padding: 1em; font-size: .9em;
 	}
+
+	@media (max-width: $celular) {
+		font-size: .7em;
+	}
+}
+
+
+
+/****************************************
+ * NOTAS DE RODAPE *
+ ****************************************/
+.abrir_nota {
+	font-size: 0.8em; cursor: pointer;
+    background: $cinza; color: $preto;
+    padding: .2em .3em; display: inline-block;
+    font-weight: bold; border-radius: 3px;
+	border: 3px solid $cinza;
+
+    &:focus, &:hover {
+		border-color: $preto;
+    }
+}
+
+.modalOverlay {
+	width:100%; height:100%;
+	z-index:10;
+	background-color: black; opacity:0.7;
+	position:fixed;
+	top:0; left:0;
+	display:none; 
+	margin:0; padding:0;	
+}
+
+.modal {
+	width: 500px;
+	max-width: 98%;
+	max-height: 98vh;
+	margin: 0 auto;
+	overflow-y: auto;
+	padding: 1.5em;
+	border: 0; background-color: white;
+	z-index: 11; box-shadow: 0 0 20px transparentize(black,0.6);
+	position:fixed; top: 50%; left:50%;
+	@include transform(translate(-50%,-50%));
+	display:none;
+
+	div[role="document"] {
+		position: relative;
+		font-size: .9em;
+
+		p {margin: 0;}
+
+		button {
+			font-size: 40px; color: $preto;
+			position: absolute;	right: -22px; top: -22px;
+			width: 27px; height: 27px; line-height: 27px;
+			text-align: center; padding: 0;
+		}
+	}
+}
+
+#explicaNota {
+	position: absolute;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+	overflow: hidden;
+	opacity: 0;
 }

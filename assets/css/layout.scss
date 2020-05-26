@@ -33,7 +33,7 @@ body {
 				}
 
 				&.ao-rolar {
-					nav ul li.nav a:nth-of-type(1) {background-color: $livros}
+					nav ul li.nav a {background-color: $livros}
 				}
 
 				@media (max-width: $smart-maior) { 
@@ -41,7 +41,15 @@ body {
 				}
 			}
 
-			a.btn { background: $livros; }
+			a.btn, hr { background: $livros; }
+
+			article {
+				.envolve-tabela table { border-bottom-color: $livros }
+				h2 svg path, h4 svg path { fill: $livros; }
+				h3:before { background: $livros; }
+			}
+
+			footer:before { border-top-color:$livros; }
 		}
 	}
 	/****************************************

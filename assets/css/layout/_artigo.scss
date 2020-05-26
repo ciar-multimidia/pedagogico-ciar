@@ -1,0 +1,152 @@
+/****************************************
+ * DEFINICAO DE LARGURAS GERAIS *
+ ****************************************/
+h2, h3, h4, h5, h6, p, ol, ul, blockquote, figure, hr, .envolve-tabela {
+	width: 100%;
+	max-width: $artigo;
+	display: block;
+}
+
+
+/****************************************
+ * TITULOS *
+ ****************************************/
+
+
+h2, h3, h4, h5, h6 { 
+	margin-bottom: 20px;
+	&.sem-grafismo {
+		&:before, svg { display: none; }
+	}
+}
+
+
+& > h2 {
+	margin-bottom: 1.8em; 
+	svg { margin-top: 10px; width: 130px; display: block; }
+}
+
+
+& > h3 {
+	position: relative; margin-top: 1.8em;
+	&:before { width: 70px; height: 14px; display: block; margin-bottom: 10px; content: "";}
+}
+
+
+& > h4 {
+	svg { margin-bottom: 10px; width: 70px; display: block; }
+}
+
+
+/****************************************
+ * FIGURAS *
+ ****************************************/
+figure {
+	
+	display: inline-block;
+
+	figcaption {
+		margin: 10px 0 0 0; font-size: .9em; opacity: .85;
+
+		p:last-of-type { margin-bottom: 0 }
+	}
+
+	&.grande {width: 100%; max-width: 100%;}
+	&.alinha-esquerda { width: auto; float: left; margin: 0 2em 0 0; text-align: left;}
+	&.alinha-direita { width: auto; float: right; margin: 0 0 0 2em; text-align: right;}
+
+}
+
+
+/****************************************
+ * TABELAS *
+ ****************************************/
+.envolve-tabela {
+	overflow-x: auto; margin-bottom: 1.8em;
+	
+	&.grande { width: 100%; max-width: 100% }
+
+	table {
+		border-collapse: collapse;
+		border-bottom: 4px solid $amarelo; 
+		width: 100%; min-width: $smart-maior; 
+		background: lighten($cinza,5%);
+		font-size: .85em;
+
+		caption {
+			padding: .6em 0;
+			text-align: left; opacity: .85;
+		}
+
+		tr {
+			border-bottom: 1px solid darken($cinza,5%);
+			border-right: 1px solid darken($cinza,5%);
+
+			th {
+				background: $preto; color: white;
+				font-weight: bold; text-align: left;
+			}
+
+			td, th {padding: 10px;}
+
+			td {border-left: 1px solid darken($cinza,5%)}
+		}
+	}
+}
+
+
+/****************************************
+ * VIDEOS *
+ ****************************************/
+.video {
+	padding-bottom: 50.4%;
+	padding-top: 30px;
+	width: 100%;
+	position: relative;
+	
+	iframe, object, embed, .mascara {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;		
+		// padding-bottom: 2.5%
+	} 	
+}
+
+
+/****************************************
+ * GALERIAS DE IMGS E VIDEOS *
+ ****************************************/
+.galeria {
+	width: calc(100% + 20px); margin-right: -10px; margin-left: -10px;
+	@include flex(space-around);
+	@include align-items(flex-end);
+
+	figure figcaption { font-size: .8em; }
+
+	// apenas imgs
+	&:not(.videos) {
+		figure { 
+			width: calc(33% - 1em);
+
+			@media (max-width: $smart-maior) { width: calc(50% - 1em); }
+		}
+
+		@media (max-width: $smart-menor) { 
+			width: 100%; margin-right: 0; margin-left: 0;
+			figure { width: 100%  }
+		}
+	}
+
+
+	// qdo ha videos
+	&.videos {
+		figure { width: calc(50% - 1em); }
+
+		@media (max-width: $smart-maior) {
+			width: 100%; margin-right: 0; margin-left: 0;
+			figure { width: 100%; }
+		}
+	}
+}
