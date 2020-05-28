@@ -49,6 +49,8 @@ body {
 				h3:before { background: $livros; }
 			}
 
+			.sumario ul li:hover { border-left-color: $livros; }
+
 			footer:before { border-top-color:$livros; }
 		}
 	}
@@ -90,3 +92,5 @@ progress {
 	}
 }
 
+
+@import "padroes/lookforward";

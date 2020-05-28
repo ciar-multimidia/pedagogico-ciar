@@ -209,6 +209,147 @@ article {
 
 
 /****************************************
+ * SUMARIO *
+ ****************************************/
+.sumario {
+	ul {
+		width: 100%; max-width: 100%;
+		@include flex(space-around);
+
+		@media (max-width: $smart-maior) {@include justify-content(space-between);}
+
+		li {
+			width: calc(33% - 10px);
+			margin: 10px 0;
+			border-left: 10px solid $preto;
+			font-size: 1.3em;
+			font-weight: bold;
+			font-family: $fonte-titulos;
+			padding-left: 25px;
+			@include transition(border 0.2s ease-in-out, padding 0.2s ease-in-out);
+
+			@media (max-width: $smart-maior) { width: calc(50% - 10px); }
+			@media (max-width: $smart-menor) { width: 100%; }
+
+			a {
+				display: block;
+				text-decoration: none;
+
+				span {
+					display: block;
+					font-size: 1rem;
+					font-weight: normal;
+					font-family:$fonte-padrao;
+					font-style: italic;
+				}
+			}
+
+			&:hover, &:focus {
+				border-left-width: 15px;
+				padding-left: 20px;
+
+				a span { font-weight: bold; }
+			}
+		}
+	}
+}
+
+
+
+/****************************************
+ * FICHA TÉCNICA *
+ ****************************************/
+.ficha-tecnica {
+	@include flex(space-between);
+
+	dl {
+		margin-bottom: 3em; 
+		width: 48%;
+
+		dt {
+			font-weight: bold; margin-top: 1.5em;
+			text-transform: uppercase;
+		}
+
+		@media (max-width: $smart-maior) {
+			width: 100%;
+		}
+	}
+
+	hr { max-width: 100%; }
+
+	.catalografica {
+		width: 100%;
+		max-width: 800px;
+		font-size: 0.8em;
+		border: 1px solid $preto;
+		margin: 2em auto 0; 
+
+		img {
+			width: 100%; height: auto;
+		}
+
+		p { margin: 0 0 20px; }
+
+		.titulo {
+			position: relative; 
+			width: 100%; 
+			font-size: 1.1em; 
+			border-bottom: 1px solid; 
+			padding: 10px 25px;
+			background: black;
+			color: white;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.codigo {
+			position: relative; 
+			width: 10%; 
+			float: left; 
+			padding: 25px 0px 25px 25px;
+			font-size: 1.1em;
+		}
+		
+		.dados {
+			position: relative; 
+			width: 88%; 
+			float: right; 
+			text-align: left; 
+			padding: 25px 25px 25px 0;
+			.cdu {
+				text-align: right;
+			}
+		}
+
+		&:after{
+			content: '';
+			display: table;
+			clear: both;
+		}
+
+		& + .biblio-responsavel{
+			text-align: center;
+			margin-top: 0.5em;
+		}
+	}
+
+	.creative-commons {
+		margin: 4em 0 0;
+		padding: 2em 20px;
+		max-width: 100%;
+	    min-width: 100%;
+		position: relative;
+		@include fundocompleto(darken($cinza,3%));
+
+		p { margin-right: auto; font-size: .8em; margin-left: auto; text-align: center; position: relative;}
+	}
+
+}
+
+
+
+/****************************************
  * RODAPE *
  ****************************************/
 footer {

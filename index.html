@@ -11,6 +11,7 @@
 	<meta name="msapplication-navbutton-color" content="#212121">
 </head>
 <body class="portal">
+<div aria-hidden="true" id="fakeloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner"><div class="loader"></div></div></div></div>
 
 <main class="container" id="portal">
 	<header id="header-portal">
@@ -70,7 +71,7 @@
 					<dd>Felipe C. Londoño</dd>
 				</dl>
 
-				<p><a href="#" class="btn">Acessar volume</a></p>
+				<p><a href="#" class="btn" >Acessar volume</a></p>
 			</div>
 
 			<div class="voltar"></div>
@@ -117,10 +118,13 @@
 </main>
 
 
+
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="assets/js/loader.js"></script>
 <script>
 jQuery(document).ready(function($) {
+	window.FakeLoader.init( { auto_hide: true } );
 
 	var headerPortal = $('#header-portal'),
 		altura_headerPortal = headerPortal.outerHeight(),

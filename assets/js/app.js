@@ -1,4 +1,6 @@
 jQuery(document).ready(function($) {
+    window.FakeLoader.init( { auto_hide: true } );
+    
     var janela = $(window),
         scrollAtual = janela.scrollTop,
         headerInterno = $('#header-volume');
