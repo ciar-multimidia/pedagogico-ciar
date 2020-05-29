@@ -196,10 +196,22 @@ body.portal {
 
 	    	// define cores de cada volume
 	    	&#volume1 {
-	    		a.btn, .voltar:before { background: nth($cores-livros,1) }
+	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,1) }
 	    	}
 	    	&#volume2 {
 	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,2) }
+	    	}
+	    	&#volume3 {
+	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,3) }
+	    	}
+	    	&#volume4 {
+	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,4) }
+	    	}
+	    	&#volume5 {
+	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,5) }
+	    	}
+	    	&#volume6 {
+	    		a.btn, a.btn:hover, .voltar:before { background: nth($cores-livros,6) }
 	    	}
 	    }
 
@@ -239,6 +251,10 @@ body.portal {
     				// barrinhas
 					&#volume1:before { background: nth($cores-livros,1); }
 					&#volume2:before { background: nth($cores-livros,2); }
+					&#volume3:before { background: nth($cores-livros,3); }
+					&#volume4:before { background: nth($cores-livros,4); }
+					&#volume5:before { background: nth($cores-livros,5); }
+					&#volume6:before { background: nth($cores-livros,6); }
     			}
 			}
     	}
