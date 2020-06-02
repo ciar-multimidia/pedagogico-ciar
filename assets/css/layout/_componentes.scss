@@ -224,12 +224,12 @@ article {
 
 		li {
 			width: calc(33% - 10px);
-			margin: 10px 0;
+			margin: 20px 0;
 			border-left: 10px solid $preto;
 			font-size: 1.3em;
 			font-weight: bold;
 			font-family: $fonte-titulos;
-			padding-left: 25px;
+			padding: 10px 0 10px 25px;
 			@include transition(border 0.2s ease-in-out, padding 0.2s ease-in-out);
 
 			@media (max-width: $smart-maior) { width: calc(50% - 10px); }
@@ -261,7 +261,7 @@ article {
 
 
 /****************************************
- * FICHA TÉCNICA *
+ * Sobre o ebook *
  ****************************************/
 .ficha-tecnica {
 	@include flex(space-between);
